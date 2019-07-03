@@ -11,6 +11,7 @@ class Student
     ~Student();
     Student(const Student& st);
     Student(Student&& st) noexcept;
+    Student& operator =( Student&& st);
     Student(int age,std::string name);
     Student& operator=(const Student& st);
     int getAge() const;

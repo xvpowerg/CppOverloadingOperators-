@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 //      //呼叫operator=
 //      s4 = s3;
 	
-    Student st1{10,"Vivin"};
+    /*Student st1{10,"Vivin"};
     Student st3{18,"Howard"};
     //st1.display();
      Student st2 = st1;
@@ -42,7 +42,13 @@ int main(int argc, char **argv)
     for (int i =1;i<=30000;i++){
     vs.push_back(Student{1,"Ken"});    
     }
-    cout << (double)clock() / CLOCKS_PER_SEC << "S";
-    
+    cout << (double)clock() / CLOCKS_PER_SEC << "S";*/
+    Student st4{18,"Howard"};
+    Student st5{18,"Howard"};
+   //st5=Student{17,"vivin"};
+   //vector<Student>vs2;
+   //vs2.emplace_back(Student{10,"Ken"});
+   Student vs2;
+   vs2 = Student(19,"Lindy");
 	return 0;
 }
