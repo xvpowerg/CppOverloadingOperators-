@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 //   vs2 = Student(19,"Lindy");
     
     Apple ap1("Ap1",10);
-    Apple ap2("Ap2",25);
+    Apple ap2("Ap2",20);
     Apple ap3("Ap3",92);
     
     //ap1 = ap2;//operator= Copy
@@ -62,8 +62,14 @@ int main(int argc, char **argv)
      //apv.push_back(Apple("Ap6",71));//move
     //Apple ap6 = Apple("Ap6",71);//Apple Constorctor:
     ap3 = Apple("Ap7",89);//operator= Move
-    ap3.display();
-    //
-    cout << "======" <<endl;
+   // std::cout << (ap1 == ap2) <<std::endl;
+   
+//    ap3.display();
+//    std::cout << (ap3 < ap2) <<std::endl;    
+//    
+   if (ap1 == ap2){
+        cout << "equalse true" <<endl;
+  }
+    cout << "======" << endl;
 	return 0;
 }

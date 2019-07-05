@@ -43,10 +43,33 @@ Apple& Apple::operator= (Apple&& a1){
     return *this;
 }
 
-        
+bool Apple::operator>(const Apple& a1){
+    std::cout << "operator>" << std::endl;
+    if (*this->price > *a1.price){
+        return true;
+    }
+    return false;
+}
+bool Apple::operator<(const Apple& a1){
+    std::cout << "operator>" << std::endl;
+    if (*this->price < *a1.price){
+        return true;
+    }
+    return false;
+}
+    
+
+bool operator==(const Apple &p1,const Apple &p2){
+     std::cout << "operator== two" << std::endl;  
+     if (p1.name->compare(*p2.name) == 0 && *p1.price == *p2.price){
+         return true;
+     }
+    return false;
+} 
+  
 void Apple::display(){
     std::cout << *name << *price <<std::endl;
-    }
+ }
 
 
 Apple::~Apple()
