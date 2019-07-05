@@ -36,6 +36,7 @@ Student& Student::operator =(const Student& st){
 Student& Student::operator =( Student&& st){
     if (this == &st) return *this;
     std::cout << "Move:" << std::endl;
+    delete name,age;
     name = st.name;
     age = st.age;
     st.name = nullptr;
@@ -63,6 +64,6 @@ void Student::setName(std::string name){
     *(this->name) = name;
 }
 Student::~Student()
-{
+{   std::cout << "Remove" <<std::endl;
     delete age,name;
 }

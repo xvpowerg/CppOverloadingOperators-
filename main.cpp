@@ -4,6 +4,7 @@
 #include <Student.h>
 #include <iostream>
 #include <time.h>
+#include <Apple.h>
 using namespace std;
 int main(int argc, char **argv)
 {
@@ -43,12 +44,26 @@ int main(int argc, char **argv)
     vs.push_back(Student{1,"Ken"});    
     }
     cout << (double)clock() / CLOCKS_PER_SEC << "S";*/
-    Student st4{18,"Howard"};
-    Student st5{18,"Howard"};
+//    Student st4{18,"Howard"};
+//    Student st5{18,"Howard"};
    //st5=Student{17,"vivin"};
    //vector<Student>vs2;
    //vs2.emplace_back(Student{10,"Ken"});
-   Student vs2;
-   vs2 = Student(19,"Lindy");
+//   Student vs2;
+//   vs2 = Student(19,"Lindy");
+    
+    Apple ap1("Ap1",10);
+    Apple ap2("Ap2",25);
+    Apple ap3("Ap3",92);
+    
+    //ap1 = ap2;//operator= Copy
+     //Apple ap5 = ap3;//copy
+     //vector<Apple> apv;
+     //apv.push_back(Apple("Ap6",71));//move
+    //Apple ap6 = Apple("Ap6",71);//Apple Constorctor:
+    ap3 = Apple("Ap7",89);//operator= Move
+    ap3.display();
+    //
+    cout << "======" <<endl;
 	return 0;
 }

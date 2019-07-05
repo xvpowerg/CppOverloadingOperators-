@@ -40,6 +40,7 @@ Mystring& Mystring::operator=(const Mystring& rhs){
 
 Mystring::~Mystring()
 {
+    std::cout << "~Mystring" <<std::endl;
     delete [] str;
 }
 
