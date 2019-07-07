@@ -8,38 +8,63 @@
 
 using namespace std;
 
-
-void testUniquePtr(){
-     //記得要include<memory>
-  //多使用make_unique
-    unique_ptr<int> t1 = make_unique<int>(350);   
-   unique_ptr<int> b = move( t1 );//控制權交給b
-   cout << *b << endl;//Error因為控制權交給了b
-   //cout << *t1 << endl;//Error因為控制權交給了b
-   
-   //make_unique 
-    unique_ptr<Apple> ap1 = make_unique<Apple>("APP1",51);      
-    vector<unique_ptr<Apple>>vap;
-    vap.push_back(make_unique<Apple>("App2",58));      
-    vap.push_back(make_unique<Apple>("App3",72));      
-     Apple outAp = *vap.back();
-     vap.pop_back();
-     outAp.display();
-     outAp = *vap.back();
-     outAp.display();
+template <typename T>
+T myMin(T a,T b){
+    return (a <b)? a:b;    
 }
-void testSmartPoint_testUseCode(){
-    shared_ptr<int> p1 = make_shared<int>(100);    
-    shared_ptr<int> p2 = p1;
-    cout << p1.use_count() << endl;//2
-    p1.reset();//
-    cout << p2.use_count() << endl;//1
-    cout << p1.use_count() << endl;//0
+template <typename T1,typename T2>
+void testFunct(T1 v1,T2 v2){
+    cout << v1 <<":" << v2<<endl;
+}
+
+template <typename T>
+class Item{
+    private:
+    string name;
+    T value;
+public:
+    Item(string name,T value):name{name},value{value}{}
+    string get_name() const{return name;}
+    T get_value() const { return value; }
+   friend ostream& operator<<(ostream& os,const Item&  it){
+            cout << it.name << it.value << endl;
+        return os;    
+    }
+    friend istream& operator>>(istream& is, Item&  it){
+            is >> it.name;
+            is >> it.value;             
+        return is;    
+    }
+    
+    
+};
+
+void test_template(){
+       cout << myMin<int>(2,5)<<endl;
+    testFunct<int,float>(10,5.9);
+    unique_ptr<Apple>ap1=  make_unique<Apple>("Ap1",120);
+    unique_ptr<Apple>ap2=  make_unique<Apple>("Ap1",82);
+    Apple apx1{"A3",100};
+    Apple apx2{"A4",200};
+    Apple mainApp = myMin(apx1,apx2);
+    cout << mainApp ;
+}
+
+
+void test_template_class(){
+ Item<int> item1{"Test1:",50};
+    cout << item1 << endl;
+    cin >> item1;
+    cout << item1 << endl;
+  //也可以放物件類型
+Item<Item<int>> item2{"Test2:",{"Ken",59} };
+    
 }
 
 int main(int argc, char **argv)
 {
- //testUniquePtr();
- testSmartPoint_testUseCode();
+    //test_template();
+    
+    
 	return 0;
 }

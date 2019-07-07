@@ -72,7 +72,7 @@ bool operator==(const Apple &p1,const Apple &p2){
 } 
   
 void Apple::display(){
-    std::cout << *name << *price <<std::endl;
+    std::cout << *name << " "<< *price <<std::endl;
  }
 
 
