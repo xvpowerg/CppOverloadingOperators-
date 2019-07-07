@@ -34,9 +34,35 @@ public:
             is >> it.name;
             is >> it.value;             
         return is;    
-    }
-    
-    
+    }    
+};
+//有預設類型的template
+template<typename T,int N>
+class Array{
+   int Size{N};
+   T values[N];
+   friend ostream& operator<<(ostream& os,const Array<T,N>& array){
+       for (const auto& val :array.values  ){
+           os << val<<" ";
+       }
+       return os;
+   }
+public:
+    Array()=default;    
+   void fill(T value){
+       for(auto& item : values){
+           item = value;
+       }    
+   }
+   
+   int getSize(){
+      return  Size;
+   }
+
+  T& operator[](int index){
+      return values[index];
+  }
+   
 };
 
 void test_template(){
@@ -57,14 +83,20 @@ void test_template_class(){
     cin >> item1;
     cout << item1 << endl;
   //也可以放物件類型
-Item<Item<int>> item2{"Test2:",{"Ken",59} };
-    
+Item<Item<int>> item2{"Test2:",{"Ken",59} };\
+}
+void test_template_array(){
+    Array<int,5> nums;
+    nums.fill(5);
+    nums[0]= 1000;
+    cout <<nums;
+    //cout << nums[0];
 }
 
 int main(int argc, char **argv)
 {
     //test_template();
-    
+    test_template_array();
     
 	return 0;
 }
