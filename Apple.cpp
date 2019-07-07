@@ -57,7 +57,11 @@ bool Apple::operator<(const Apple& a1){
     }
     return false;
 }
-    
+ std::ostream& operator<<(std::ostream& os,const Apple& ap){
+     os << *ap.name << *ap.price;
+     return os;
+     
+}    
 
 bool operator==(const Apple &p1,const Apple &p2){
      std::cout << "operator== two" << std::endl;  

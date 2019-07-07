@@ -5,6 +5,8 @@
 #include <iostream>
 #include <time.h>
 #include <Apple.h>
+#include <TestStatic.h>
+
 using namespace std;
 int main(int argc, char **argv)
 {
@@ -51,6 +53,8 @@ int main(int argc, char **argv)
    //vs2.emplace_back(Student{10,"Ken"});
 //   Student vs2;
 //   vs2 = Student(19,"Lindy");
+
+    
     
     Apple ap1("Ap1",10);
     Apple ap2("Ap2",20);
@@ -67,6 +71,7 @@ int main(int argc, char **argv)
 //    ap3.display();
 //    std::cout << (ap3 < ap2) <<std::endl;    
 //    
+cout << ap3 <<endl;
    if (ap1 == ap2){
         cout << "equalse true" <<endl;
   }
