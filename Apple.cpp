@@ -3,18 +3,18 @@
 #include <iostream>
 //copy
 Apple::Apple(const Apple& a1):Apple{*a1.name,*a1.price}{
-    std::cout << "Apple Copy:" << std::endl;    
+    //std::cout << "Apple Copy:" << std::endl;    
 }
 
 
 Apple::Apple(std::string name,int price){
-      std::cout << "Apple Constorctor:" << std::endl;    
+   //   std::cout << "Apple Constorctor:" << std::endl;    
     this->name = new std::string(name);
     this->price = new int(price);
 }
 
 Apple::Apple(Apple&& ap)noexcept{
-      std::cout << "Apple Move:" << std::endl;    
+     // std::cout << "Apple Move:" << std::endl;    
       this->name = ap.name;
       this->price = ap.price;
       ap.name= nullptr;
