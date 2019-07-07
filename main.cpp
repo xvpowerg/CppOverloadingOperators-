@@ -28,9 +28,18 @@ void testUniquePtr(){
      outAp = *vap.back();
      outAp.display();
 }
+void testSmartPoint_testUseCode(){
+    shared_ptr<int> p1 = make_shared<int>(100);    
+    shared_ptr<int> p2 = p1;
+    cout << p1.use_count() << endl;//2
+    p1.reset();//
+    cout << p2.use_count() << endl;//1
+    cout << p1.use_count() << endl;//0
+}
+
 int main(int argc, char **argv)
 {
  //testUniquePtr();
- 
+ testSmartPoint_testUseCode();
 	return 0;
 }
