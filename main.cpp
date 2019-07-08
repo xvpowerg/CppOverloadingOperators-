@@ -1,102 +1,78 @@
 #include <stdio.h>
-#include <time.h>
 #include <memory>
 #include <iostream>
+#include <TestPerformance.h>
 //測試用以上勿動
 #include <vector>
+#include <list>
+#include <algorithm>
 #include <Apple.h>
 
 using namespace std;
-
-template <typename T>
-T myMin(T a,T b){
-    return (a <b)? a:b;    
-}
-template <typename T1,typename T2>
-void testFunct(T1 v1,T2 v2){
-    cout << v1 <<":" << v2<<endl;
-}
-
-template <typename T>
-class Item{
-    private:
+class Person{
     string name;
-    T value;
-public:
-    Item(string name,T value):name{name},value{value}{}
-    string get_name() const{return name;}
-    T get_value() const { return value; }
-   friend ostream& operator<<(ostream& os,const Item&  it){
-            cout << it.name << it.value << endl;
-        return os;    
-    }
-    friend istream& operator>>(istream& is, Item&  it){
-            is >> it.name;
-            is >> it.value;             
-        return is;    
-    }    
-};
-//有預設類型的template
-template<typename T,int N>
-class Array{
-   int Size{N};
-   T values[N];
-   friend ostream& operator<<(ostream& os,const Array<T,N>& array){
-       for (const auto& val :array.values  ){
-           os << val<<" ";
-       }
-       return os;
-   }
-public:
-    Array()=default;    
-   void fill(T value){
-       for(auto& item : values){
-           item = value;
-       }    
-   }
-   
-   int getSize(){
-      return  Size;
-   }
-
-  T& operator[](int index){
-      return values[index];
+    int age;
+ public:
+  Person()=default;
+  Person(const Person&&  rhv){
+      name = rhv.name;
+      age = rhv.age;
   }
-   
+  Person(string name,int age):name{name},age{age}{}
+  bool operator<(const Person &rhs)const{
+      return this->age <rhs.age;
+  }
+  bool operator==(const Person& rhs)const{
+      return (this->name == rhs.name && this->age == rhs.age);
+  }
 };
 
-void test_template(){
-       cout << myMin<int>(2,5)<<endl;
-    testFunct<int,float>(10,5.9);
-    unique_ptr<Apple>ap1=  make_unique<Apple>("Ap1",120);
-    unique_ptr<Apple>ap2=  make_unique<Apple>("Ap1",82);
-    Apple apx1{"A3",100};
-    Apple apx2{"A4",200};
-    Apple mainApp = myMin(apx1,apx2);
-    cout << mainApp ;
+void find_test(){
+//   vector<int> vec {1,2,3,4,5};
+//   for (int i =1;i<=300000;i++){
+//       vec.push_back(i);
+//   }
+//   
+//   auto loc = std::find(begin(vec),end(vec),300000);
+//   if (loc != end(vec))
+//       cout << "founc number:" << *loc <<endl;
+//   else
+//       cout << "Could't find number:"  <<endl;
+ 
+// list<Person> players{
+//        {"Ken",21},
+//        {"Vivin",12},
+//        {"Iris",26}
+//  };
+//  auto loc1 = find(players.begin(),players.end(),Person("Vivin",12));
+//  if (loc1 != players.end())
+//      cout << "Found Vivin" << endl;
+//    else
+//        cout << "Moe not found" << endl;
+
+list<Person> players;  
+
+for(int i =1;i<=300000;i++){
+    players.push_back(Person{"Vivin",i}); 
+}
+  auto loc1 = find(players.begin(),players.end(),Person("Vivin",300000));
+  if (loc1 != players.end())
+      cout << "Found Vivin" << endl;
+    else
+        cout << "Moe not found" << endl;
+   printTime();
 }
 
-
-void test_template_class(){
- Item<int> item1{"Test1:",50};
-    cout << item1 << endl;
-    cin >> item1;
-    cout << item1 << endl;
-  //也可以放物件類型
-Item<Item<int>> item2{"Test2:",{"Ken",59} };\
+void count_if_test(){
+    vector<int> vec{1,2,3,4,5,1,2,1,100};
+    int num = count_if(vec.begin(),vec.end(),
+                       [](int x){return x%2 == 0;});
+    cout << num << "even numbers found:" << endl;
+    
 }
-void test_template_array(){
-    Array<int,5> nums;
-    nums.fill(5);
-    nums[0]= 1000;
-    cout <<nums;
-    //cout << nums[0];
-}
-
 int main(int argc, char **argv)
 {
-    //test_template();
-    test_template_array();
-    
+  //find_test();
+  count_if_test();
 	return 0;
 }
